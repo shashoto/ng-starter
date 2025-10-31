@@ -1,8 +1,5 @@
 {
   "name": "@shashotolaha/ng-starter",
-  "publishConfig": {
-    "access": "public"
-  },
   "version": "1.0.0",
   "schematics": "./collection.json",
   "main": "dist/index.js",
@@ -10,7 +7,6 @@
     "build": "tsc -p tsconfig.json",
     "postbuild": "xcopy src\\ng-new\\files dist\\ng-new\\files /E /I /Y & xcopy src\\ng-add\\files dist\\ng-add\\files /E /I /Y"
   },
-  "description": "Angular v20 starter with Tailwind v4.1, PrimeNG, ESLint, and Prettier preconfigured.",
   "keywords": [
     "angular",
     "starter",
@@ -21,6 +17,18 @@
     "angular with tailwind",
     "angular with primeng"
   ],
+  "description": "Angular v20 starter with Tailwind v4.1, PrimeNG, ESLint, and Prettier preconfigured.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shashoto/ng-starter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shashoto/ng-starter/issues"
+  },
+  "homepage": "https://github.com/shashoto/ng-starter#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Shashoto Laha",
   "license": "MIT",
   "devDependencies": {
