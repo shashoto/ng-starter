@@ -1,0 +1,5 @@
+# Exclude local files from npm package
+node_modules
+dist
+# template sources excluded from compilation
+src/files/**/*.ts 

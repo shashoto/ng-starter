@@ -1,0 +1,4 @@
+# Exclude local files from npm package
+node_modules
+dist
+

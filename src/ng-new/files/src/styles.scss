@@ -1,0 +1,8 @@
+/* tailwind config */
+@use './tailwind.css';
+
+/* Custom Layout */
+@use './assets/themes/layout.scss';
+
+/* PrimeIcons last */
+@use 'primeicons/primeicons.css';

@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "ng-new": {
+      "description": "Custom Angular Starter setup with Tailwind, PrimeNG, etc.",
+      "factory": "./dist/ng-new/index#ngNew"
+    },
+    "ng-add": {
+      "description": "Add starter configuration to an existing project",
+      "factory": "./dist/ng-add/index#ngAdd"
+    }
+  }
+}

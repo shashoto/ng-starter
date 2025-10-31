@@ -1,0 +1,32 @@
+{
+  "name": "@shashotolaha/ng-starter",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "1.0.0",
+  "schematics": "./collection.json",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "postbuild": "xcopy src\\ng-new\\files dist\\ng-new\\files /E /I /Y & xcopy src\\ng-add\\files dist\\ng-add\\files /E /I /Y"
+  },
+  "description": "Angular v20 starter with Tailwind v4.1, PrimeNG, ESLint, and Prettier preconfigured.",
+  "keywords": [
+    "angular",
+    "starter",
+    "tailwind",
+    "primeng",
+    "eslint",
+    "prettier",
+    "angular with tailwind",
+    "angular with primeng"
+  ],
+  "author": "Shashoto Laha",
+  "license": "MIT",
+  "devDependencies": {
+    "@angular-devkit/core": "^20.3.8",
+    "@angular-devkit/schematics": "^20.3.8",
+    "@types/node": "^24.9.2",
+    "typescript": "^5.9.3"
+  }
+}
