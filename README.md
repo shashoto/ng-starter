@@ -24,3 +24,122 @@ Please make sure to update tests as appropriate.
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
+```
+ng-starter
+├─ .npmignore
+├─ agent.md
+├─ collection.json
+├─ package-lock.json
+├─ package.json
+├─ README.md
+├─ src
+│  ├─ ng-add
+│  │  └─ files
+│  │     ├─ v19
+│  │     │  ├─ .postcssrc.json
+│  │     │  ├─ .prettierignore
+│  │     │  ├─ .prettierrc.json
+│  │     │  ├─ eslint.config.js
+│  │     │  ├─ index.ts
+│  │     │  └─ src
+│  │     │     ├─ app
+│  │     │     │  ├─ app.config.ts
+│  │     │     │  ├─ configs
+│  │     │     │  │  ├─ env
+│  │     │     │  │  │  └─ env.config.ts
+│  │     │     │  │  ├─ primeng
+│  │     │     │  │  │  └─ primeng.config.ts
+│  │     │     │  │  └─ router
+│  │     │     │  │     └─ router.config.ts
+│  │     │     │  └─ shared
+│  │     │     │     ├─ components
+│  │     │     │     │  ├─ layout
+│  │     │     │     │  └─ ui
+│  │     │     │     ├─ directives
+│  │     │     │     ├─ services
+│  │     │     │     └─ types
+│  │     │     │        └─ environment
+│  │     │     │           └─ environment.d.ts
+│  │     │     ├─ assets
+│  │     │     │  └─ themes
+│  │     │     │     ├─ fonts
+│  │     │     │     │  └─ _fonts.scss
+│  │     │     │     ├─ layout.scss
+│  │     │     │     └─ styles
+│  │     │     │        └─ _core.scss
+│  │     │     ├─ styles.scss
+│  │     │     └─ tailwind.css
+│  │     └─ v20
+│  │        ├─ .postcssrc.json
+│  │        ├─ .prettierignore
+│  │        ├─ .prettierrc.json
+│  │        ├─ eslint.config.js
+│  │        ├─ index.ts
+│  │        └─ src
+│  │           ├─ app
+│  │           │  ├─ app.config.ts
+│  │           │  ├─ configs
+│  │           │  │  ├─ env
+│  │           │  │  │  └─ env.config.ts
+│  │           │  │  ├─ primeng
+│  │           │  │  │  └─ primeng.config.ts
+│  │           │  │  └─ router
+│  │           │  │     └─ router.config.ts
+│  │           │  └─ shared
+│  │           │     ├─ components
+│  │           │     │  ├─ layout
+│  │           │     │  └─ ui
+│  │           │     ├─ directives
+│  │           │     ├─ services
+│  │           │     └─ types
+│  │           │        └─ environment
+│  │           │           └─ environment.d.ts
+│  │           ├─ assets
+│  │           │  └─ themes
+│  │           │     ├─ fonts
+│  │           │     │  └─ _fonts.scss
+│  │           │     ├─ layout.scss
+│  │           │     └─ styles
+│  │           │        └─ _core.scss
+│  │           ├─ styles.scss
+│  │           └─ tailwind.css
+│  ├─ ng-new
+│  │  ├─ files
+│  │  │  ├─ .postcssrc.json
+│  │  │  ├─ .prettierignore
+│  │  │  ├─ .prettierrc.json
+│  │  │  ├─ eslint.config.js
+│  │  │  └─ src
+│  │  │     ├─ app
+│  │  │     │  ├─ app.config.ts
+│  │  │     │  ├─ configs
+│  │  │     │  │  ├─ env
+│  │  │     │  │  │  └─ env.config.ts
+│  │  │     │  │  ├─ primeng
+│  │  │     │  │  │  └─ primeng.config.ts
+│  │  │     │  │  └─ router
+│  │  │     │  │     └─ router.config.ts
+│  │  │     │  └─ shared
+│  │  │     │     ├─ components
+│  │  │     │     │  ├─ layout
+│  │  │     │     │  └─ ui
+│  │  │     │     ├─ directives
+│  │  │     │     ├─ services
+│  │  │     │     └─ types
+│  │  │     │        └─ environment
+│  │  │     │           └─ environment.d.ts
+│  │  │     ├─ assets
+│  │  │     │  └─ themes
+│  │  │     │     ├─ fonts
+│  │  │     │     │  └─ _fonts.scss
+│  │  │     │     ├─ layout.scss
+│  │  │     │     └─ styles
+│  │  │     │        └─ _core.scss
+│  │  │     ├─ styles.scss
+│  │  │     └─ tailwind.css
+│  │  └─ index.ts
+│  └─ utils
+│     └─ log-copied-files.ts
+└─ tsconfig.json
+
+```

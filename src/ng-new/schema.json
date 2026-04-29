@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "NgNewSchema",
+  "title": "ng-new options",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the new Angular project.",
+      "$default": { "$source": "argv", "index": 0 }
+    },
+    "directory": {
+      "type": "string",
+      "description": "The directory to create the project in. Defaults to project name."
+    }
+  },
+  "required": ["name"],
+  "additionalProperties": false
+}

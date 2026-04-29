@@ -31,6 +31,26 @@ function safeParseJson(jsonString: string): any {
   }
 }
 
+function getAngularVersion(tree: Tree, projectRoot: string): string | null {
+  const pkgPath = join(projectRoot, 'package.json');
+  if (!tree.exists(pkgPath)) return null;
+  const pkg = JSON.parse(tree.read(pkgPath)!.toString());
+  const version = pkg.dependencies?.['@angular/core'] || pkg.devDependencies?.['@angular/core'];
+  if (!version) return null;
+  const match = version.match(/(\d+)\./);
+  return match ? match[1] : null;
+}
+
+function getTypescriptVersion(tree: Tree, projectRoot: string): string | null {
+  const pkgPath = join(projectRoot, 'package.json');
+  if (!tree.exists(pkgPath)) return null;
+  const pkg = JSON.parse(tree.read(pkgPath)!.toString());
+  const version = pkg.dependencies?.['typescript'] || pkg.devDependencies?.['typescript'];
+  if (!version) return null;
+  const match = version.match(/(\d+)\./);
+  return match ? match[1] : null;
+}
+
 export function ngNew(options: any): Rule {
   return (_tree: Tree, context: SchematicContext) => {
     const projectName = options.name;
@@ -80,6 +100,7 @@ export function ngNew(options: any): Rule {
       if (tsconfigBuffer) {
         const tsconfig = safeParseJson(tsconfigBuffer.toString());
         const compilerOptions = tsconfig.compilerOptions || {};
+        const tsVersion = getTypescriptVersion(tree, projectRoot);
 
         tsconfig.compilerOptions = {
           ...compilerOptions,
@@ -91,21 +112,54 @@ export function ngNew(options: any): Rule {
             '@store/*': ['app/store/*'],
             '@assets/*': ['assets/*'],
           },
+          ...(tsVersion && parseInt(tsVersion, 10) >= 6 ? { "ignoreDeprecations": "6.0" } : {}),
+          "outDir": "./out-tsc/app",
+          "rootDir": "./src",
         };
 
         tree.overwrite(tsconfigPath, JSON.stringify(tsconfig, null, 2));
       }
 
-      // Add package install task
-      context.addTask(
-        new NodePackageInstallTask({
-          workingDirectory: projectRoot,
-          packageName:
-            'tailwindcss @tailwindcss/postcss postcss primeng @primeuix/themes primeicons tailwindcss-primeui eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-plugin-import prettier-plugin-tailwindcss @typescript-eslint/parser @typescript-eslint/eslint-plugin',
-        }),
-      );
+      // Modify tsconfig.app.json
+      const tsconfigAppPath = join(projectRoot, 'tsconfig.app.json');
+      const tsconfigAppBuffer = tree.read(tsconfigAppPath);
+      if (tsconfigAppBuffer) {
+        const tsconfigApp = safeParseJson(tsconfigAppBuffer.toString());
+        const compilerOptionsApp = tsconfigApp.compilerOptions || {};
+        const tsVersion = getTypescriptVersion(tree, projectRoot);
 
-      context.logger.info('✅ Tailwind, PrimeNG, ESLint setup added!');
+        if (tsVersion && parseInt(tsVersion, 10) >= 6) {
+          tsconfigApp.compilerOptions = {
+            "ignoreDeprecations": "6.0",
+            ...compilerOptionsApp
+          };
+        }
+        tree.overwrite(tsconfigAppPath, JSON.stringify(tsconfigApp, null, 2));
+      }
+
+      // Add package install task (conditional on Angular version detection)
+      const angularVersion = getAngularVersion(tree, projectRoot);
+      if (angularVersion !== null) {
+        const major = parseInt(angularVersion, 10);
+        
+        // Pin to matching major only if it's 20 or less (known versions).
+        const primePkg = major <= 20 ? `primeng@^${major}.0.0` : 'primeng';
+        const themePkg = major === 20 ? `@primeuix/themes@^20.0.0` : '@primeuix/themes';
+        const iconsPkg = 'primeicons';
+        const primeUIPkg = major === 20 ? `tailwindcss-primeui@^20.0.0` : 'tailwindcss-primeui';
+
+        const packages = `tailwindcss @tailwindcss/postcss postcss ${primePkg} ${themePkg} ${iconsPkg} ${primeUIPkg} eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-plugin-import prettier-plugin-tailwindcss @typescript-eslint/parser @typescript-eslint/eslint-plugin`;
+        
+        context.addTask(
+          new NodePackageInstallTask({
+            workingDirectory: projectRoot,
+            packageName: packages,
+          }),
+        );
+        context.logger.info('✅ Tailwind, PrimeNG, ESLint setup added!');
+      } else {
+        context.logger.error('❌ Angular version not detected in new project. Skipping extra package installation.');
+      }
       const result = mergeWith(templateSource,MergeStrategy.Overwrite);
       // 🪄 After merge, log what was created or updated
       const wrappedResult: Rule = (tree2, ctx) => {

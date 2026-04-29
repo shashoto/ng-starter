@@ -1,11 +1,16 @@
 {
   "name": "@shashotolaha/ng-starter",
-  "version": "1.0.1",
+  "version": "19.0.0",
+  "description": "Angular starter with Tailwind, PrimeNG, ESLint, and Prettier preconfigured. Supports Angular 19 and 20.",
   "schematics": "./collection.json",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "postbuild": "xcopy src\\ng-new\\files dist\\ng-new\\files /E /I /Y & xcopy src\\ng-add\\files dist\\ng-add\\files /E /I /Y"
+    "postbuild:win": "xcopy src\\ng-new\\files dist\\ng-new\\files /E /I /Y & xcopy src\\ng-add\\files dist\\ng-add\\files /E /I /Y",
+    "postbuild": "cpx \"src/ng-add/files/**/*\" dist/ng-add/files --preserve && cpx \"src/ng-new/files/**/*\" dist/ng-new/files --preserve && cpx \"src/**/*.json\" dist --preserve",
+    "prepublishOnly": "npm run build",
+    "publish:v20": "npm version 20.0.0 --no-git-tag-version && npm run build && npm publish --tag latest",
+    "publish:v19": "npm version 19.0.0 --no-git-tag-version && npm run build && npm publish --tag v19"
   },
   "keywords": [
     "angular",
@@ -17,7 +22,6 @@
     "angular with tailwind",
     "angular with primeng"
   ],
-  "description": "Angular v20 starter with Tailwind v4.1, PrimeNG, ESLint, and Prettier preconfigured.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shashoto/ng-starter.git"
@@ -35,6 +39,12 @@
     "@angular-devkit/core": "^20.3.8",
     "@angular-devkit/schematics": "^20.3.8",
     "@types/node": "^24.9.2",
+    "@types/semver": "^7.7.1",
+    "cpx": "^1.5.0",
+    "semver": "^7.7.4",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@angular/cli": "^19.2.24"
   }
 }
