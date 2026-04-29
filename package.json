@@ -1,6 +1,6 @@
 {
   "name": "@shashotolaha/ng-starter",
-  "version": "20.0.0",
+  "version": "19.0.0",
   "description": "Angular starter with Tailwind, PrimeNG, ESLint, and Prettier preconfigured. Supports Angular 19 and 20.",
   "schematics": "./collection.json",
   "main": "dist/index.js",
