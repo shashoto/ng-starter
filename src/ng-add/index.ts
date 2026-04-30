@@ -235,9 +235,9 @@ function modifyTsconfigApp(tree: Tree, context: SchematicContext): void {
       ignoreDeprecations: "6.0",
       ...existingOptions,
     };
-    tsconfigApp.include = ["src/**/*.d.ts", "src/**/*.ts"];
-    tsconfigApp.exclude = ["src/**/*.spec.ts", "src/test.ts"];
   }
+  tsconfigApp.include = ["src/**/*.d.ts", "src/**/*.ts"];
+  tsconfigApp.exclude = ["src/**/*.spec.ts", "src/test.ts"];
 
   tree.overwrite(tsconfigAppPath, JSON.stringify(tsconfigApp, null, 2));
   context.logger.info("✅ tsconfig.app.json updated.");
