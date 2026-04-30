@@ -37,6 +37,7 @@ const VERSION_CONFIG: Record<number, VersionConfig> = {
       "autoprefixer",
       "primeng@^19",
       "@primeuix/themes",
+      "tailwindcss-primeui",
       "primeicons",
       "eslint",
       "prettier",
@@ -53,12 +54,12 @@ const VERSION_CONFIG: Record<number, VersionConfig> = {
     // Tailwind v4 for Angular 20
     packages: [
       "tailwindcss",
-      "@tailwindcss/postcss",
       "postcss",
+      "@tailwindcss/postcss",
       "primeng",
       "@primeuix/themes",
-      "primeicons",
       "tailwindcss-primeui",
+      "primeicons",
       "eslint",
       "prettier",
       "eslint-config-prettier",
@@ -266,7 +267,9 @@ export function ngAdd(): Rule {
     // 3️⃣  Copy version-specific template files
     //      Files live under  ng-add/files/v19/  or  ng-add/files/v20/
     const sourceTemplates = apply(url(`./files/v${ngMajor}`), [
-      template({}),
+      template({
+        dot: ".",
+      }),
       move("./"),
     ]);
     context.logger.info(`📁 Copying template files from files/v${ngMajor}/...`);

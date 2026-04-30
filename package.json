@@ -1,6 +1,6 @@
 {
   "name": "@shashotolaha/ng-starter",
-  "version": "19.0.2",
+  "version": "19.0.3",
   "description": "Angular starter with Tailwind, PrimeNG, ESLint, and Prettier preconfigured. Supports Angular 19 and 20.",
   "schematics": "./collection.json",
   "main": "dist/index.js",
@@ -11,7 +11,7 @@
     "prepublishOnly": "npm run build",
     "publish:v20": "npm version 20.0.0 --no-git-tag-version && npm run build && npm publish --tag latest",
     "publish:v19": "npm version 19.0.0 --no-git-tag-version && npm run build && npm publish --tag ngstarterv19",
-    "publishv19:withtag": "npm run build && npm publish --tag ngstarterv19",
+    "publish:v19:withtag": "npm run build && npm publish --tag ngstarterv19",
     "publish:v20:withtag": "npm run build && npm publish --tag latest"
   },
   "keywords": [
