@@ -1,12 +1,12 @@
 {
   "name": "@shashotolaha/ng-starter",
-  "version": "19.0.3",
+  "version": "19.0.4",
   "description": "Angular starter with Tailwind, PrimeNG, ESLint, and Prettier preconfigured. Supports Angular 19 and 20.",
   "schematics": "./collection.json",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "postbuild:win": "xcopy src\\ng-new\\files dist\\ng-new\\files /E /I /Y & xcopy src\\ng-add\\files dist\\ng-add\\files /E /I /Y",
+    "postbuild:win": "xcopy src\\ng-new\\files dist\\ng-new\\files /E /I /Y /H & xcopy src\\ng-add\\files dist\\ng-add\\files /E /I /Y /H",
     "postbuild": "cpx \"src/ng-add/files/**/*\" dist/ng-add/files --preserve && cpx \"src/ng-new/files/**/*\" dist/ng-new/files --preserve && cpx \"src/**/*.json\" dist --preserve",
     "prepublishOnly": "npm run build",
     "publish:v20": "npm version 20.0.0 --no-git-tag-version && npm run build && npm publish --tag latest",

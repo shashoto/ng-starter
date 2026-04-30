@@ -267,9 +267,7 @@ export function ngAdd(): Rule {
     // 3️⃣  Copy version-specific template files
     //      Files live under  ng-add/files/v19/  or  ng-add/files/v20/
     const sourceTemplates = apply(url(`./files/v${ngMajor}`), [
-      template({
-        dot: ".",
-      }),
+      template({}),
       move("./"),
     ]);
     context.logger.info(`📁 Copying template files from files/v${ngMajor}/...`);
